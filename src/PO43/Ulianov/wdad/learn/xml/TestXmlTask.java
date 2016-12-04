@@ -9,7 +9,8 @@ public class TestXmlTask {
     {
         User peperoni=new User("Peperoni","Peperoni@mail.ru");
         XmlTask Test1= new XmlTask("C:\\Users\\Iorket\\IdeaProjects\\start ing - monkey - to - human - path\\src\\PO43\\Ulianov\\wdad\\learn\\xml\\xmlForATest.xml");
-        Test1.testMethod();
+        System.out.print(Test1.getNoteText("Third note",peperoni));
+        Test1.updateNote("Third note",peperoni,"It`s working");
 
 
     }

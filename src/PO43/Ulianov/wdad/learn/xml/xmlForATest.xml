@@ -22,7 +22,6 @@
         <text>I have a bad fantasy</text>
         <owner name="Peperoni" mail="Peperoni@mail.ru"/>
         <privileges>
-            <ALL rights="R"></ALL>
             <user mail="Peperoni@mail.ru" rights="RW"></user>
         </privileges>
     </note>
