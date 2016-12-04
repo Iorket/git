@@ -3,6 +3,11 @@ package PO43.Ulianov.wdad.learn.xml;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 
 /**
@@ -29,6 +34,7 @@ public class XmlTask {
     }
     public void updateNote(String title,User owner,String text){
         getTextElement(title,owner).setTextContent(text);
+        writeToFile();
         System.out.print("Well dobe!");
     }
     public void setPrivileges(String noteTitle,User user,int newRigths) {
@@ -67,15 +73,17 @@ public class XmlTask {
         return null;
     }
     private void writeToFile(){
-        
-
+        try {
+            Transformer tr = TransformerFactory.newInstance().newTransformer();
+            StreamResult file= new StreamResult(new File(xmlFile));
+            tr.transform(new DOMSource(doc),file);
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
     }
 }
-/*
-во
-имя
-порядка
- */
 class User{
     private String name;
     private String mail;

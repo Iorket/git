@@ -1,28 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE notes SYSTEM "notes.dtd">
-        <notes>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><notes>
     <note>
         <title>Sun</title>
         <text>good morning</text>
-        <owner name="those" mail="those@mail.ru"/>
+        <owner mail="those@mail.ru" name="those"/>
         <privileges>
-            <ALL rights="RW"></ALL>
+            <ALL rights="RW"/>
         </privileges>
     </note>
     <note>
         <title>Praise</title>
         <text>Praise the sun</text>
-        <owner name="mr.Templ" mail="mr.Templ@gmail.com"/>
+        <owner mail="mr.Templ@gmail.com" name="mr.Templ"/>
         <privileges>
-            <user mail="those@mail.ru" rights="R"></user>
+            <user mail="those@mail.ru" rights="R"/>
         </privileges>
     </note>
     <note>
         <title>Third note</title>
-        <text>I have a bad fantasy</text>
-        <owner name="Peperoni" mail="Peperoni@mail.ru"/>
+        <text>It`s working</text>
+        <owner mail="Peperoni@mail.ru" name="Peperoni"/>
         <privileges>
-            <user mail="Peperoni@mail.ru" rights="RW"></user>
+            <user mail="Peperoni@mail.ru" rights="RW"/>
         </privileges>
     </note>
 </notes>
