@@ -7,17 +7,15 @@
         <!ELEMENT privileges (ALL|(user+))>
         <!ELEMENT ALL EMPTY>
         <!ELEMENT user EMPTY>
-        <!ELEMENTcdate (#PCDATA)>
+        <!ELEMENT cdate (#PCDATA)>
         <!-- cdate format “DD-MM-YYYY”   -->
         <!ATTLIST
                 owner
                 name CDATA #REQUIRED
                 mail CDATA #REQUIRED>
-        <!ATTLIST
-                ALL
-                rights (R|RW) R>
-        <!ATTLIST
-                user
+        <!ATTLIST ALL
+                rights (R|RW) "R">
+        <!ATTLIST user
                 name CDATA #IMPLIED
                 mail CDATA #REQUIRED
-                rights (R|RW) R>
+                rights (R|RW) "R">
