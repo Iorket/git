@@ -9,7 +9,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
-
+//tagName в текстметод
 /**
  * Created by Iorket on 04.12.2016.
  */
@@ -30,14 +30,15 @@ public class XmlTask {
         }
     }
     public String getNoteText(String title,User owner) {
-        return getTextElement(title, owner).getTextContent();
+        return TextElement(title, owner).getTextContent();
     }
     public void updateNote(String title,User owner,String text){
-        getTextElement(title,owner).setTextContent(text);
+        TextElement(title,owner).setTextContent(text);
         writeToFile();
         System.out.print("Well dobe!");
     }
     public void setPrivileges(String noteTitle,User user,int newRigths) {
+        //упростить бы
         NodeList noteList = doc.getElementsByTagName("note");
         for (int noteCounter = 0; noteCounter < noteList.getLength(); noteCounter++) {
             Element note = (Element) noteList.item(noteCounter);
@@ -47,19 +48,27 @@ public class XmlTask {
                 for(int usersCount=0;usersCount<users.getLength();usersCount++)
                 {
                     Element privilegeUser=(Element)users.item(usersCount);
-                    if(user.getMail().equals(privilegeUser.getAttribute("mail")))
+                    //Вопросец:setAttribute и setTextContent не работают
+                    if(user.getMail().equals(privilegeUser.getAttribute("mail").toString()))
                     {
-                        switch (newRigths){
-                            case 0:privilegeUser.getParentNode().removeChild(privilegeUser);
-                            case 1:privilegeUser.setAttribute("rights","R");
-                            case 2:privilegeUser.setAttribute("rights","RW");
-                        }
+                        privilegeUser.getParentNode().removeChild(privilegeUser);
                     }
                 }
+                //надо написать проверку на имя,навеерн
+                if( newRigths!=0) {
+                    Element newUser = doc.createElement("user");
+                    newUser.setAttribute("mail",user.getMail());
+                    if(newRigths==2) newUser.setAttribute("rights","RW");
+                    else if(newRigths==1) newUser.setAttribute("rights","R");
+                    notePrivileges.appendChild(newUser);
+                }
+                break;
+
             }
         }
+        writeToFile();
     }
-    private Element getTextElement(String title, User owner){
+    private Element TextElement(String title, User owner){
          NodeList noteList=doc.getElementsByTagName("note");
         for(int noteCounter=0;noteCounter<noteList.getLength();noteCounter++) {
             Element note = (Element) noteList.item(noteCounter);

@@ -11,6 +11,7 @@ public class TestXmlTask {
         XmlTask Test1= new XmlTask("C:\\Users\\Iorket\\IdeaProjects\\start ing - monkey - to - human - path\\src\\PO43\\Ulianov\\wdad\\learn\\xml\\xmlForATest.xml");
         System.out.print(Test1.getNoteText("Third note",peperoni));
         Test1.updateNote("Third note",peperoni,"It`s working");
+        Test1.setPrivileges("Third note",peperoni,1);
 
 
     }
