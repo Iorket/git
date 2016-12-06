@@ -65,7 +65,6 @@ public class XmlTask {
                     newUser.setAttribute("name",user.getName());//может же быть ситуация когда имя в записи отстутсвует?добавить конструктор там на его отстутствие,проверку добавить
                     if(newRigths==2) newUser.setAttribute("rights","RW");
                     else if(newRigths==1) newUser.setAttribute("rights","R");
-                    else System.out.println("Incorect rights,I removed this user HAHA(It`s bad,I know)");
                     notePrivileges.appendChild(newUser);
                 }
         writeToFile();
