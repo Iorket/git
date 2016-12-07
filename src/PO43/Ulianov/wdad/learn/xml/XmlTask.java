@@ -62,7 +62,7 @@ public class XmlTask {
                     //Вопросец:setAttribute и setTextContent не работают при смене прав RW на R
                     Element newUser = doc.createElement("user");
                     newUser.setAttribute("mail",user.getMail());
-                    newUser.setAttribute("name",user.getName());//может же быть ситуация когда имя в записи отстутсвует?добавить конструктор там на его отстутствие,проверку добавить
+                    newUser.setAttribute("name",user.getName());//может же быть ситуация когда имя в записи отстутсвует?
                     if(newRigths==2) newUser.setAttribute("rights","RW");
                     else if(newRigths==1) newUser.setAttribute("rights","R");
                     notePrivileges.appendChild(newUser);
@@ -73,7 +73,7 @@ public class XmlTask {
          NodeList noteList=doc.getElementsByTagName("note");
         for(int noteCounter=0;noteCounter<noteList.getLength();noteCounter++) {
             Element note = (Element) noteList.item(noteCounter);
-            if (note.getElementsByTagName("title").item(0).getTextContent().equals(title)) {
+            if (note.getElementsByTagName("title").item(0).getTextContent().equals(title)){//null;
                return note;}
         }
         return null;
