@@ -36,6 +36,8 @@ public class TestXmlTask {
         test2.setRegistryPort(test2.getRegistryPort());
         test2.setValueOfCreateRegistryField(true);
         test2.setValueOfUsecodebaseonlyField(false);
+        PreferencesManager test3 = PreferencesManager.getInstance();
+        System.out.print(test3.getValueOfCreateRegistryField());
     }
 }
 

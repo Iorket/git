@@ -16,12 +16,11 @@ import java.io.*;
 public class PreferencesManager {
 
     private Document doc;
-    private String filePath;
+    private final String FILE_PATH="//C:\\Users\\Iorket\\IdeaProjects\\start ing - monkey - to - human - path\\src\\PO43\\Ulianov\\wdad\\resources\\configuration\\appconfig.xml";
     private static PreferencesManager instance;
     private PreferencesManager(){
-        filePath="//C:\\Users\\Iorket\\IdeaProjects\\start ing - monkey - to - human - path\\src\\PO43\\Ulianov\\wdad\\resources\\configuration\\appconfig.xml";
         try{
-            File inputFile = new File(filePath);
+            File inputFile = new File(FILE_PATH);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             doc = dBuilder.parse(inputFile);
@@ -98,7 +97,7 @@ public class PreferencesManager {
     private void writeToFile(){
         try {
             Transformer tr = TransformerFactory.newInstance().newTransformer();
-            StreamResult file= new StreamResult(new File(filePath));
+            StreamResult file= new StreamResult(new File(FILE_PATH));
             tr.transform(new DOMSource(doc),file);
         } catch (TransformerConfigurationException e) {
             e.printStackTrace();
