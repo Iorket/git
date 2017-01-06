@@ -20,7 +20,7 @@
         <text>It`s working/sometimes</text>
         <owner mail="Peperoni@mail.ru" name="Peperoni"/>
         <privileges>
-        <user mail="peperoni@mail.ru" name="peperoni" rights="R"/><user mail="Peperoni@mail.ru" name="Peperoni" rights="R"/></privileges>
+        <user mail="peperoni@mail.ru" name="peperoni" rights="R"/><user mail="Peperoni@mail.ru" name="Peperoni" rights="RW"/></privileges>
     </note>
     <note>
         <title>Ta-da</title>

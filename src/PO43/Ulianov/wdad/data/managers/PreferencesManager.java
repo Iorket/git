@@ -1,5 +1,6 @@
 package PO43.Ulianov.wdad.data.managers;
 
+import com.sun.xml.internal.stream.buffer.sax.Properties;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import javax.xml.transform.Transformer;
@@ -83,6 +84,13 @@ public class PreferencesManager {
         else {neededElemByTags("client","usecodebaseonly",(Element) doc.getElementsByTagName("rmi").item(0)).setTextContent("no");}
         writeToFile();
     }
+    public  void setProperty(String key,String value){}
+    public  String getProperty(String key){}
+    public void setProperties(Properties prop){};
+    public Properties getProperties(){};
+    public void addBondedObject(String name,String className){}
+    public void removeBindedObject(String name){};
+
 //lvl l/2/3 mb
     //косячно как то
     private Element rmiElement(String tagName){
