@@ -54,19 +54,14 @@ public class XmlTask {
                     Element privilegeUser=(Element)users.item(usersCount);
                     if(user.getMail().equals(privilegeUser.getAttribute("mail").toString()))
                     {
-                        privilegeUser.getParentNode().removeChild(privilegeUser);
-                    }
+                        switch (newRigths) {
+                            case 0:privilegeUser.getParentNode().removeChild(privilegeUser);
+                            case 1:privilegeUser.setAttribute("rights","R");
+                            case 2:privilegeUser.setAttribute("rights","RW");
+                        }
+                        }
                 }
-                //надо написать проверку на имя,навеерн
-                if( newRigths!=0 ) {
-                    //Вопросец:setAttribute и setTextContent не работают при смене прав RW на R
-                    Element newUser = doc.createElement("user");
-                    newUser.setAttribute("mail",user.getMail());
-                    newUser.setAttribute("name",user.getName());//может же быть ситуация когда имя в записи отстутсвует?добавить конструктор там на его отстутствие,проверку добавить
-                    if(newRigths==2) newUser.setAttribute("rights","RW");
-                    else if(newRigths==1) newUser.setAttribute("rights","R");
-                    notePrivileges.appendChild(newUser);
-                }
+                //brave switch
         writeToFile();
     }
     private Element noteWithTitle(String title){
