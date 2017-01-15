@@ -1,5 +1,6 @@
 package PO43.Ulianov.wdad.data.managers;
 
+
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import javax.xml.transform.Transformer;
@@ -9,6 +10,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.util.Properties;
+import java.util.StringTokenizer;
+
 /**
  * Created by Iorket on 07.12.2016.
  */
@@ -83,8 +87,80 @@ public class PreferencesManager {
         else {neededElemByTags("client","usecodebaseonly",(Element) doc.getElementsByTagName("rmi").item(0)).setTextContent("no");}
         writeToFile();
     }
-//lvl l/2/3 mb
-    //косячно как то
+    //HEHE
+    public  void setProperty(String key,String value){
+        finalElement(key).setTextContent(value);
+        writeToFile();
+    }
+    public  String getProperty(String key){return finalElement(key).getTextContent();}
+    public void setProperties(Properties prop){
+        for (String propertyName:prop.stringPropertyNames()
+             ) {
+            setProperty(propertyName,prop.getProperty(propertyName));
+        }
+        writeToFile();
+    };
+    public Properties getProperties(){
+        Properties properties=new Properties();
+        xmlPropertiesAdder(properties,"",doc.getDocumentElement());
+        return  properties;
+    };
+    public void addBindedObject(String name,String className){
+        Element bindedobject = doc.createElement("bindedobject");
+        bindedobject.setAttribute("name",name);
+        bindedobject.setAttribute("className",className);
+        doc.getElementsByTagName("rmi").item(0).appendChild(bindedobject);
+        writeToFile();
+    }
+    public void removeBindedObject(String name){
+        Element rmi= (Element)doc.getElementsByTagName("rmi").item(0);
+        NodeList bindedObjects=rmi.getElementsByTagName("bindedobject");
+        for(int i=0;i <bindedObjects.getLength();i++)
+        {
+            Element bindedObject=(Element) bindedObjects.item(i);
+            if(bindedObject.getAttribute("name")==name)
+            {
+                bindedObject.getParentNode().removeChild(bindedObject);
+            }
+        }
+        writeToFile();
+    };
+    @Deprecated
+    private void xmlPropertiesAdder(Properties prop,String path,Node node)
+    {
+        boolean hasChild=false;
+        path=path+node.getNodeName()+".";
+        NodeList nodes=node.getChildNodes();
+        for(int i=0;i<nodes.getLength();i++) {
+            Node currentNode = nodes.item(i);
+            if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
+                xmlPropertiesAdder(prop, path, currentNode);
+                hasChild=true;
+            }
+        }
+
+        if (!hasChild) prop.put(path.substring(0, path.length() - 1), node.getTextContent());
+
+    }
+
+    @Deprecated
+    private Element finalElement(String key)
+    {
+        Element currentElement=null;
+        StringTokenizer stk = new StringTokenizer(key,".");
+        String [] tagsRoute = new String[stk.countTokens()];
+        for(int i = 0; i<tagsRoute.length; i++)
+        {
+            tagsRoute[i] = stk.nextToken();
+            if(i==1) {
+                currentElement=(Element)doc.getElementsByTagName(tagsRoute[i]).item(0);
+            }
+            else if(i>1){
+                currentElement=(Element)currentElement.getElementsByTagName(tagsRoute[i]).item(0);
+            }
+        }
+        return  currentElement;
+    }
     private Element rmiElement(String tagName){
         Element rmi=(Element)doc.getElementsByTagName("rmi").item(0);
         return (Element) rmi.getElementsByTagName(tagName).item(0);
