@@ -2,6 +2,8 @@ package PO43.Ulianov.wdad.learn.xml;
 
 import PO43.Ulianov.wdad.data.managers.PreferencesManager;
 
+import java.util.Properties;
+
 /**
  * Created by Iorket on 04.12.2016.
  */
@@ -37,7 +39,19 @@ public class TestXmlTask {
         test2.setValueOfCreateRegistryField(true);
         test2.setValueOfUsecodebaseonlyField(false);
         PreferencesManager test3 = PreferencesManager.getInstance();
-        System.out.print(test3.getValueOfCreateRegistryField());
+        System.out.println(test3.getValueOfCreateRegistryField());
+        //TEST 3.1
+        test2.setProperty("apconfig.rmi.server.registry.registryaddress","localhost2017");
+        test2.addBindedObject("bestname","bestCLass");
+        test2.removeBindedObject("bestname");
+        System.out.println(test2.getProperty("apconfig.rmi.server.registry.registryaddress"));
+        Properties tp=test2.getProperties();
+        for (String name:tp.stringPropertyNames()
+             ) {
+            System.out.print(name+" ");
+        }
+        test2.setProperties(tp);
+        System.out.println("does it WORK?YAHoo");
     }
 }
 

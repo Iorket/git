@@ -3,7 +3,7 @@
         <server>
         <registry>
         <createregistry>yes</createregistry>
-        <registryaddress>localhost</registryaddress>
+        <registryaddress>localhost2017</registryaddress>
         <registryport>1099</registryport>
         </registry>
         </server>
