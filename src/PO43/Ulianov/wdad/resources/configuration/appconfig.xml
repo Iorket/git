@@ -3,7 +3,7 @@
         <server>
         <registry>
         <createregistry>yes</createregistry>
-        <registryaddress>localhost2017</registryaddress>
+        <registryaddress>localhost</registryaddress>
         <registryport>1099</registryport>
         </registry>
         </server>
@@ -12,5 +12,5 @@
         <usecodebaseonly>no</usecodebaseonly>
         </client>
         <classprovider>http://www.yourhost.free.ru/cp/cp.jar</classprovider>
-        </rmi>
+        <bindedobject className="XmlDataManagerImpl" name="XmlDataManager"/><bindedobject className="XmlDataManagerImpl" name="XmlDataManager"/></rmi>
         </appconfig>

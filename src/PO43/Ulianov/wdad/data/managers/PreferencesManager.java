@@ -10,6 +10,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.util.HashMap;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
@@ -124,7 +125,19 @@ public class PreferencesManager {
             }
         }
         writeToFile();
-    };
+    }
+    @Deprecated
+    public String getBindedObjectName(String className){
+        NodeList bindedObjects;
+        bindedObjects=finalElement("appconfig.rmi").getElementsByTagName("bindedobject");
+        for(int i=0;i<bindedObjects.getLength();i++)
+        {
+            Element currentBindedObjects=(Element)bindedObjects.item(i);
+            if((currentBindedObjects.getAttribute("className").equals(className)))
+                return currentBindedObjects.getAttribute("name");
+        }
+        return  null;
+    }
     @Deprecated
     private void xmlPropertiesAdder(Properties prop,String path,Node node)
     {
