@@ -5,6 +5,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import java.io.File;
 import java.io.Serializable;
+import java.security.spec.ECParameterSpec;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -106,6 +107,10 @@ public class XmlDataManagerImpl implements XmlDataManager,Serializable{
                 return note;}
         }
         return null;
+    }
+    public String noteF(){
+        NodeList noteList=doc.getElementsByTagName("note");
+        return ((Element)noteList.item(0)).getElementsByTagName("text").item(0).getTextContent();
     }
     private Notes convertToNotesObj(Element elem) throws ParseException,NullPointerException {
         //cdate

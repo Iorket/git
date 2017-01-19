@@ -22,8 +22,9 @@ public class Server implements PreferencesConstantManager {
 
         //little test
         User mrT=new User("mr.Templ","mr.Templ@gmail.com");
-          XmlDataManagerImpl TestObj=new XmlDataManagerImpl("C:\\Users\\Iorket\\IdeaProjects\\start ing - monkey - to - human - path\\src\\PO43\\Ulianov\\wdad\\learn\\rmi\\XmlForTest.xml");
-          System.out.println(TestObj.getNote(mrT,"Praise"));
+        XmlDataManagerImpl TestObj=new XmlDataManagerImpl("C:\\Users\\Iorket\\IdeaProjects\\start ing - monkey - to - human - path\\src\\PO43\\Ulianov\\wdad\\learn\\rmi\\XmlForTest.xml");
+        System.out.print(TestObj.noteF());
+        System.out.println(TestObj.getNote(mrT,"Praise"));
         PreferencesManager prefManagServ = PreferencesManager.getInstance();
             if (prefManagServ.getProperty(createRegistry).equals("yes")) {
                 XmlDataManagerImpl remoteObj=new XmlDataManagerImpl("C:\\Users\\Iorket\\IdeaProjects\\start ing - monkey - to - human - path\\src\\PO43\\Ulianov\\wdad\\learn\\rmi\\XmlForTest.xml");
