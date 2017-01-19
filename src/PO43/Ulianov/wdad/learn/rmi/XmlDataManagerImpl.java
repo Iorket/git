@@ -116,7 +116,6 @@ public class XmlDataManagerImpl implements XmlDataManager,Serializable{
         //cdate
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             Date cdate = formatter.parse(elem.getElementsByTagName("cdate").item(0).getTextContent());
-
         //owner
         Element ownerElem=(Element) elem.getElementsByTagName("owner").item(0);
         User owner=new User(ownerElem.getAttribute("name"),ownerElem.getAttribute("mail"));
