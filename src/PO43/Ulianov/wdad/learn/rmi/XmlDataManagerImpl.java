@@ -97,8 +97,8 @@ public class XmlDataManagerImpl implements XmlDataManager {
         return notesOfCurrentOwner;
     }
     //delete?title dublicate trouble
-    private Element noteWithTitle(String title){
-        NodeList noteList=doc.getElementsByTagName("note");
+    private Element noteWithTitle(String title) throws  NullPointerException{
+        NodeList noteList=((Element)doc.getElementsByTagName("notes").item(0)).getElementsByTagName("note");
         for(int noteCounter=0;noteCounter<noteList.getLength();noteCounter++) {
             Element note = (Element) noteList.item(noteCounter);
             if (note.getElementsByTagName("title").item(0).getTextContent().equals(title)) {

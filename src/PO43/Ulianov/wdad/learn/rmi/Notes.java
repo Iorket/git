@@ -1,12 +1,13 @@
 package PO43.Ulianov.wdad.learn.rmi;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 
 /**
  * Created by Mr.Admin on 15.01.2017.
  */
-public class Notes {
+public class Notes implements Serializable{
     public Notes(User owner,String title,StringBuilder text,Date cdate,HashMap<User,Integer> privelegeMap)
     {
         this.cdate=cdate;

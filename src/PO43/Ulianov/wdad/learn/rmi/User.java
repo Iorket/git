@@ -1,9 +1,11 @@
 package PO43.Ulianov.wdad.learn.rmi;
 
+import java.io.Serializable;
+
 /**
  * Created by Mr.Admin on 15.01.2017.
  */
-public class User {
+public class User implements Serializable{
     private String name,mail;
     static final  User ALL=new User("all",null);
     User(String name,String mail){
