@@ -3,7 +3,10 @@ package PO43.Ulianov.wdad.learn.rmi;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.security.spec.ECParameterSpec;
 import java.text.ParseException;
@@ -26,15 +29,14 @@ import javax.xml.transform.stream.StreamResult;
 public class XmlDataManagerImpl implements XmlDataManager,Serializable{
     Document doc;
     String fullXmlFileName;//не факт ,что нужно
-    public XmlDataManagerImpl(String fullXmlFileName){
-        try {
+    public XmlDataManagerImpl(String fullXmlFileName) throws ParserConfigurationException, IOException, SAXException {
+
             //вжух,и код появился
             this.fullXmlFileName = fullXmlFileName;
             File inputFile=new File(fullXmlFileName);
             DocumentBuilderFactory dbf= DocumentBuilderFactory.newInstance();
             DocumentBuilder db=dbf.newDocumentBuilder();
-        }
-        catch (Exception e){}
+            doc = db.parse(inputFile);
 
     }
     @Override
@@ -78,9 +80,8 @@ public class XmlDataManagerImpl implements XmlDataManager,Serializable{
                     newUser.setAttribute("rights", "R");
                 case 2:
                     newUser.setAttribute("rights", "RW");
-                    ((Element)noteAfterTitleFiltr.getElementsByTagName("privileges")).appendChild(newUser);
-                    //easy add after find
             }
+            noteAfterTitleFiltr.getElementsByTagName("privileges").item(0).appendChild(newUser);
         }
     }
     @Override
@@ -92,8 +93,7 @@ public class XmlDataManagerImpl implements XmlDataManager,Serializable{
         {
             Element currentNote=(Element)noteList.item(i);
             if(isNoteOwner(currentNote,owner)) {
-                notesOfCurrentOwner.add(convertToNotesObj(currentNote));
-            }
+                notesOfCurrentOwner.add(convertToNotesObj(currentNote));}
             }
 
         return notesOfCurrentOwner;
@@ -115,7 +115,8 @@ public class XmlDataManagerImpl implements XmlDataManager,Serializable{
     private Notes convertToNotesObj(Element elem) throws ParseException,NullPointerException {
         //cdate
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        Date cdate= formatter.parse(elem.getElementsByTagName("cdate").item(0).getTextContent());
+            Date cdate = formatter.parse(elem.getElementsByTagName("cdate").item(0).getTextContent());
+
         //owner
         Element ownerElem=(Element) elem.getElementsByTagName("owner").item(0);
         User owner=new User(ownerElem.getAttribute("name"),ownerElem.getAttribute("mail"));

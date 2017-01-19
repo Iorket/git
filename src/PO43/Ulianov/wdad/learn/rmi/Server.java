@@ -2,8 +2,11 @@ package PO43.Ulianov.wdad.learn.rmi;
 
 import PO43.Ulianov.wdad.data.managers.PreferencesManager;
 import PO43.Ulianov.wdad.utils.PreferencesConstantManager;
+import org.xml.sax.SAXException;
 import sun.security.timestamp.TSRequest;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
@@ -18,7 +21,7 @@ import java.text.ParseException;
  */
 public class Server implements PreferencesConstantManager {
     public Server() {};
-    public static void main(String args[]) throws RemoteException, NotBoundException, AlreadyBoundException, ParseException {
+    public static void main(String args[]) throws IOException, NotBoundException, AlreadyBoundException, ParseException, SAXException, ParserConfigurationException {
 
         //little test
         User mrT=new User("mr.Templ","mr.Templ@gmail.com");

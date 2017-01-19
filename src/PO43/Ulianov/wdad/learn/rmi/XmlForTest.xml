@@ -7,6 +7,7 @@
         <privileges>
             <ALL rights="RW"/>
         </privileges>
+        <cdate>12-10-2900</cdate>
     </note>
     <note>
         <title>Praise</title>
@@ -25,6 +26,7 @@
             <user mail="peperoni@mail.ru" name="peperoni" rights="R"/>
             <user mail="Peperoni@mail.ru" name="Peperoni" rights="R"/>
         </privileges>
+        <cdate>12-12-2013</cdate>
     </note>
     <note>
         <title>Ta-da</title>
