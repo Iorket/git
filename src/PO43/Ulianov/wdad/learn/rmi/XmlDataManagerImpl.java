@@ -4,6 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import java.io.File;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import javax.xml.transform.stream.StreamResult;
 /**
  * Created by Mr.Admin on 15.01.2017.
  */
-public class XmlDataManagerImpl implements XmlDataManager {
+public class XmlDataManagerImpl implements XmlDataManager,Serializable{
     Document doc;
     String fullXmlFileName;//не факт ,что нужно
     public XmlDataManagerImpl(String fullXmlFileName){
@@ -98,7 +99,7 @@ public class XmlDataManagerImpl implements XmlDataManager {
     }
     //delete?title dublicate trouble
     private Element noteWithTitle(String title) throws  NullPointerException{
-        NodeList noteList=((Element)doc.getElementsByTagName("notes").item(0)).getElementsByTagName("note");
+        NodeList noteList=doc.getElementsByTagName("note");
         for(int noteCounter=0;noteCounter<noteList.getLength();noteCounter++) {
             Element note = (Element) noteList.item(noteCounter);
             if (note.getElementsByTagName("title").item(0).getTextContent().equals(title)) {

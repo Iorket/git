@@ -20,6 +20,7 @@ public class Server implements PreferencesConstantManager {
     public Server() {};
     public static void main(String args[]) throws RemoteException, NotBoundException, AlreadyBoundException, ParseException {
 
+        //little test
         User mrT=new User("mr.Templ","mr.Templ@gmail.com");
           XmlDataManagerImpl TestObj=new XmlDataManagerImpl("C:\\Users\\Iorket\\IdeaProjects\\start ing - monkey - to - human - path\\src\\PO43\\Ulianov\\wdad\\learn\\rmi\\XmlForTest.xml");
           System.out.println(TestObj.getNote(mrT,"Praise"));
