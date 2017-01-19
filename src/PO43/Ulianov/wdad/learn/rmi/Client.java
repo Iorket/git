@@ -14,11 +14,11 @@ public class Client implements PreferencesConstantManager{
     public  static  void  main(String args[])
     {
         PreferencesManager clienPm=PreferencesManager.getInstance();
-        XmlDataManagerImpl remoteObj;
+        XmlDataManager remoteObj;
         try {
             Registry registry= LocateRegistry.getRegistry(clienPm.getProperty(registryAddress), Integer.parseInt(clienPm.getProperty(registryPort)));
-            Object object=registry.lookup(clienPm.getBindedObjectName(XmlDataManagerImpl.class.getSimpleName()));
-            remoteObj=(XmlDataManagerImpl)object;
+            Object object=registry.lookup(clienPm.getBindedObjectName("XmlDataManagerImpl"));
+            remoteObj=(XmlDataManager)object;
             System.out.println("Note with title Praise: "+ remoteObj.getNote(new User("mr.Templ","mr.Templ@gmail.com"),"Praise"));
             User peperoni=new User("Peperoni","Peperoni@mail.ru");
             StringBuilder someBeautifullText=new StringBuilder("vzhuh");
